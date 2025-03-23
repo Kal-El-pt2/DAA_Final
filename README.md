@@ -2,14 +2,14 @@
 
 Downloading and Extracting the files :
 
-    - Download the repo "DAA_Assignment" from https://github.com/Kal-El-pt2/DAA_Assignment
+    - Download the repo "DAA_Assignment" from https://github.com/Kal-El-pt2/DAA_Final
     - Extract the zip file "DAA_Assignment.zip" .
 
 OR
 
 If git is installed run the following in terminal :
 
-    git clone https://github.com/Kal-El-pt2/DAA_Assignment
+    git clone https://github.com/Kal-El-pt2/DAA_Final
 
 make sure you've the following files :
 Tomita.cpp
