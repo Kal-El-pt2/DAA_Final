@@ -4,7 +4,7 @@
 #pragma GCC optimization("unroll-loops")
 using namespace std;
 
-// Fast I/O routines (unchanged)
+
 struct FastInput
 {
     static const int BUF_SIZE = 1 << 16;

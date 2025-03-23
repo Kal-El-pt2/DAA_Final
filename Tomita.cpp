@@ -9,14 +9,14 @@
 
 using namespace std;
 
-// Set to true to print detailed neighbor update debug info for the first few iterations.
+
 const bool detailedNeighborDebug = true;
 const int detailedNeighborDebugLimit = 10;
 
-// ----- Graph structure using vector of sorted neighbor lists -----
+
 struct Graph
 {
-    vector<vector<int>> adj; // each vertex's neighbor list
+    vector<vector<int>> adj;
     int vertexCount;
 
     Graph(int n) : vertexCount(n)
@@ -26,7 +26,7 @@ struct Graph
     }
 };
 
-// ----- Read graph from file and build a 0-indexed graph -----
+
 Graph readGraphFromFile(const string &filename)
 {
     ifstream file(filename);
@@ -59,7 +59,7 @@ Graph readGraphFromFile(const string &filename)
         graph.adj[u_new].push_back(v_new);
         graph.adj[v_new].push_back(u_new);
     }
-    // Sort each neighbor list.
+
     for (int i = 0; i < n; i++)
     {
         sort(graph.adj[i].begin(), graph.adj[i].end());
@@ -68,9 +68,6 @@ Graph readGraphFromFile(const string &filename)
     return graph;
 }
 
-// ----- Optimized Compute Degeneracy Ordering with additional debug -----
-// This version uses buckets and tracks each vertex's position in its bucket.
-// Detailed neighbor-update debugging is printed for the first few processed vertices.
 vector<int> degeneracyOrder(const Graph &graph)
 {
     int n = graph.vertexCount;
@@ -83,7 +80,7 @@ vector<int> degeneracyOrder(const Graph &graph)
             maxDeg = degree[i];
     }
 
-    // Create buckets for degrees 0..maxDeg.
+
     vector<vector<int>> buckets(maxDeg + 1);
     vector<int> pos(n, -1);
     for (int i = 0; i < n; i++)
@@ -96,11 +93,11 @@ vector<int> degeneracyOrder(const Graph &graph)
     vector<bool> removed(n, false);
     vector<int> order;
     order.reserve(n);
-    int debugInterval = 100000; // Print progress every 100,000 removals.
+    int debugInterval = 100000;
 
     for (int k = 0; k < n; k++)
     {
-        // Find the smallest bucket index that is non-empty.
+        
         int minBucket = -1;
         for (int d = 0; d <= maxDeg; d++)
         {
@@ -128,13 +125,13 @@ vector<int> degeneracyOrder(const Graph &graph)
                  << buckets[minBucket].size() << endl;
         }
 
-        // Update the degrees for each neighbor of v.
+        
         for (int u : graph.adj[v])
         {
             if (!removed[u])
             {
                 int d_old = degree[u];
-                // Check that the bucket is not empty.
+                
                 if (buckets[d_old].empty())
                 {
                     cout << "Error: buckets[" << d_old << "] is unexpectedly empty for vertex " << u << endl;
@@ -148,18 +145,18 @@ vector<int> degeneracyOrder(const Graph &graph)
                     continue;
                 }
                 int last_vertex = buckets[d_old].back();
-                // Debug print for detailed neighbor updates for early iterations.
+                
                 if (k < detailedNeighborDebugLimit && detailedNeighborDebug)
                 {
                     cout << "Updating neighbor " << u << ": d_old = " << d_old << ", pos[u] = " << pos_u
                          << ", last_vertex = " << last_vertex << endl;
                 }
-                // Swap u with the last element in its bucket.
+                
                 buckets[d_old][pos_u] = last_vertex;
                 pos[last_vertex] = pos_u;
                 buckets[d_old].pop_back();
 
-                // Decrease degree.
+                
                 degree[u]--;
                 int d_new = degree[u];
                 pos[u] = buckets[d_new].size();
@@ -175,10 +172,10 @@ vector<int> degeneracyOrder(const Graph &graph)
     return order;
 }
 
-// ----- Global output file -----
+
 ofstream outputFile;
 
-// ----- Write a clique to the output file -----
+
 void writeClique(const vector<int> &clique)
 {
     ostringstream oss;
@@ -190,7 +187,7 @@ void writeClique(const vector<int> &clique)
     outputFile << oss.str();
 }
 
-// ----- Bron-Kerbosch algorithm with pivoting -----
+
 void BronKerbosch(vector<int> &R, vector<int> &P, vector<int> &X, const Graph &graph)
 {
     if (P.empty() && X.empty())
@@ -247,7 +244,7 @@ void BronKerbosch(vector<int> &R, vector<int> &P, vector<int> &X, const Graph &g
     }
 }
 
-// ----- Enumerate maximal cliques using degeneracy ordering -----
+
 void enumerateMaximalCliques(const Graph &graph, const vector<int> &degOrder)
 {
     int n = graph.vertexCount;
