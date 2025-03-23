@@ -45,12 +45,9 @@ https://drive.google.com/drive/folders/16Puop_IbYSE1OT_5dUMHWeAh_Ley6tD-?usp=dri
 
 # 2.Dataset Preparation :
 
-Download txt files from the following websites :
+Download raw data and processed data txt files from the following drive link :
 
-    1. https://snap.stanford.edu/data/email-Enron.html
-    2. https://snap.stanford.edu/data/as-Skitter.html
-    3. https://snap.stanford.edu/data/wiki-Vote.html
-
+https://drive.google.com/drive/u/0/folders/18GMUKROFb2dyw18MMmfD7TPgteOhIlIj
 //
 
     run : dataprep.py
