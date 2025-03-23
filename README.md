@@ -63,7 +63,7 @@ The process of exploring and implementing these papers was an exiciting task ful
 
 We : Dhairya, Aariv, Saumya, Animish and Shreejeet enjoyed the process and sucessfully implemented these papers.
 
-Dhairya and Shreejeet :
+Dhairya(2022A7PS1377H) and Shreejeet(2022A7PS0036H) :
 
 Read and Implemented the "Listing All Maximal Cliques in Sparse Graphs in Near-optimal Time" paper. (ELS.cpp)
 
@@ -71,7 +71,7 @@ And has also analyzed the results of all papers and hosted it in a webpage : htt
 
 Made a dataprep.py for preprocessing the data.
 
-Aariv and Animish :
+Aariv(2022A7PS0052H) and Animish(2022A7PS1367H) :
 
     Read and Implemented the "The worst-case time complexity for generating all maximal cliques and computational experiments". (Tomita.cpp)
 
@@ -79,7 +79,7 @@ Aariv and Animish :
 
     Crucial efforts in making the report.
 
-Saumya :
+Saumya(2022A7PS1318H) :
 
     Read and Implemented the "Arboricity and Subgraph Listing Algorithms" paper. (Chiba.cpp)
 
